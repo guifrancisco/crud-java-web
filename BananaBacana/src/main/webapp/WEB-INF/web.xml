@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <servlet>
+    <description></description>
+    <display-name>cadastrar</display-name>
+    <servlet-name>cadastrar</servlet-name>
+    <servlet-class>banana.controller.cadastrarProdutoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cadastrar</servlet-name>
+    <url-pattern>/cadastrarProduto</url-pattern>
+  </servlet-mapping>
+  <display-name>BananaBacana</display-name>
+  
+  <servlet>
+    <description></description>
+    <display-name>buscar</display-name>
+    <servlet-name>buscar</servlet-name>
+    <servlet-class>banana.controller.buscarProdutoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>buscar</servlet-name>
+    <url-pattern>/buscarProdutos</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>modificar</display-name>
+    <servlet-name>modificar</servlet-name>
+    <servlet-class>banana.controller.modificarProdutoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>modificar</servlet-name>
+    <url-pattern>/modificarProduto</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
