@@ -1,19 +1,19 @@
-package banana.dao;
+package protozoario.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import com.mysql.cj.MysqlConnection;
+//import com.mysql.cj.MysqlConnection;
 
-import banana.model.Produto;
+import protozoario.model.Protozoario;
 
-public class ProdutoDao {
+public class ProtozoarioDao {
 
-	public void CadastrarProduto(Produto produto) {
+	public void CadastrarProtozoario(Protozoario protozoario) {
 
-		String sql = "INSERT INTO produto VALUES (null,?,?,?,?)";
+		String sql = "INSERT INTO protozoario VALUES (null,?,?,?,?)";
 		PreparedStatement pStatement = null;
 		Connection conn = null;
 
@@ -23,10 +23,10 @@ public class ProdutoDao {
 
 			pStatement = conn.prepareStatement(sql);
 
-			pStatement.setString(1, produto.getDescricao());
-			pStatement.setInt(2, produto.getQuantidade());
-			pStatement.setDouble(3, produto.getPreco());
-			pStatement.setBoolean(4, produto.isOnline());
+			pStatement.setString(1, protozoario.getNome());
+			pStatement.setString(2, protozoario.getFilo());
+			pStatement.setString(3, protozoario.getClasse());
+			pStatement.setString(4, protozoario.getOrdem());
 
 			pStatement.execute();
 
@@ -55,12 +55,12 @@ public class ProdutoDao {
 
 	}
 	
-	public Produto BuscarProdutoPorId(int id) {
-		String sql = "SELECT * FROM produto WHERE IdProduto = ?";
+	public Protozoario BuscarProtozoarioPorId(int id) {
+		String sql = "SELECT * FROM protozoario WHERE IdProtozoario = ?";
 		ResultSet rs = null;
 		Connection conn = null;
 		PreparedStatement pStatement = null;
-		Produto produto = null;
+		Protozoario protozoario = null;
 		
 		try {
 			
@@ -71,12 +71,12 @@ public class ProdutoDao {
 			
 			if (rs != null && rs.next()) {
 				
-				produto = new Produto();
-				produto.setIdProduto(rs.getInt("idProduto"));
-				produto.setDescricao(rs.getString("descricao"));
-				produto.setQuantidade(rs.getInt("quantidade"));
-				produto.setPreco(rs.getDouble("preco"));
-				produto.setOnline(rs.getBoolean("online"));
+				protozoario = new Protozoario();
+				protozoario.setIdProtozoario(rs.getInt("idProtozoario"));
+				protozoario.setNome(rs.getString("nome"));
+				protozoario.setFilo(rs.getString("filo"));
+				protozoario.setClasse(rs.getString("classe"));
+				protozoario.setOrdem(rs.getString("ordem"));
 				
 			}
 			
@@ -97,20 +97,20 @@ public class ProdutoDao {
 			}
 		}
 		
-		return produto;
+		return protozoario;
 	}
 	
 	
 
-	public ArrayList<Produto> BuscarProdutosPorDescricao(String descricao) {
+	public ArrayList<Protozoario> BuscarProtozoarioPorNome(String descricao) {
 
-		String sql = "SELECT * FROM produto WHERE descricao LIKE '%" + descricao + "%'";
+		String sql = "SELECT * FROM protozoario WHERE nome LIKE '%" + descricao + "%'";
 
 		ResultSet rs = null;
 		Connection conn = null;
 		PreparedStatement pStatement = null;
-		Produto produto = null;
-		ArrayList<Produto> produtos = null;
+		Protozoario protozoario = null;
+		ArrayList<Protozoario> protozoarios = null;
 
 		try {
 
@@ -120,18 +120,18 @@ public class ProdutoDao {
 
 			if (rs != null) {
 
-				produtos = new ArrayList<Produto>();
+				protozoarios = new ArrayList<Protozoario>();
 
 				while (rs.next()) {
 
-					produto = new Produto();
-					produto.setIdProduto(rs.getInt("idProduto"));
-					produto.setDescricao(rs.getString("descricao"));
-					produto.setQuantidade(rs.getInt("quantidade"));
-					produto.setPreco(rs.getDouble("preco"));
-					produto.setOnline(rs.getBoolean("online"));
+					protozoario = new Protozoario();
+					protozoario.setIdProtozoario(rs.getInt("idProtozoario"));
+					protozoario.setNome(rs.getString("nome"));
+					protozoario.setFilo(rs.getString("filo"));
+					protozoario.setClasse(rs.getString("classe"));
+					protozoario.setOrdem(rs.getString("ordem"));
 
-					produtos.add(produto);
+					protozoarios.add(protozoario);
 				}
 			}
 
@@ -158,19 +158,19 @@ public class ProdutoDao {
 			}
 		}
 
-		return produtos;
+		return protozoarios;
 	}
 	
 	
-	public void ExcluirProduto(int idProduto) {
-		String sql = "DELETE FROM produto WHERE idProduto = ?";
+	public void ExcluirProtozoario(int idProtozoario) {
+		String sql = "DELETE FROM protozoario WHERE idProtozoario = ?";
 		PreparedStatement pStatement = null;
 		Connection conn = null;
 		
 		try {
 			conn = new MySqlConnection().getConnection();
 			pStatement = conn.prepareStatement(sql);
-			pStatement.setInt(1, idProduto);
+			pStatement.setInt(1, idProtozoario);
 			pStatement.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -196,9 +196,9 @@ public class ProdutoDao {
 		}
 	}
 	
-	public void AlterarProduto(Produto produto) {
+	public void AlterarProtozoario(Protozoario protozoario) {
 		
-		String sql = "UPDATE produto SET descricao = ?, quantidade = ?, preco = ?, online = ? WHERE idProduto = ?";
+		String sql = "UPDATE protozoario SET nome = ?, filo = ?, classe = ?, ordem = ? WHERE idProtozoario = ?";
 		PreparedStatement pStatement = null;
 		Connection conn = null;
 		
@@ -207,11 +207,11 @@ public class ProdutoDao {
 			
 			conn = new MySqlConnection().getConnection();
 			pStatement = conn.prepareStatement(sql);
-			pStatement.setString(1, produto.getDescricao());
-			pStatement.setInt(2, produto.getQuantidade());
-			pStatement.setDouble(3, produto.getPreco());
-			pStatement.setBoolean(4, produto.isOnline());
-			pStatement.setInt(5, produto.getIdProduto());
+			pStatement.setString(1, protozoario.getNome());
+			pStatement.setString(2, protozoario.getFilo());
+			pStatement.setString(3, protozoario.getClasse());
+			pStatement.setString(4, protozoario.getOrdem());
+			pStatement.setInt(5, protozoario.getIdProtozoario());
 			
 			pStatement.execute();		
 			

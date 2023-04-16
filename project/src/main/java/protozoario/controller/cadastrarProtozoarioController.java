@@ -1,4 +1,4 @@
-package banana.controller;
+package protozoario.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -6,20 +6,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import protozoario.model.Protozoario;
+
 import java.io.IOException;
 
-import banana.model.Produto;
 
 /**
  * Servlet implementation class cadastrarProdutoController
  */
-public class cadastrarProdutoController extends HttpServlet {
+public class cadastrarProtozoarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public cadastrarProdutoController() {
+	public cadastrarProtozoarioController() {
 		super();
 	}
 
@@ -45,34 +46,38 @@ public class cadastrarProdutoController extends HttpServlet {
 
 //		System.out.println("ENVIADO VIA POST");
 
-		String descricao = request.getParameter("descricao");
-		boolean online = false;
+		String nome = request.getParameter("nome");
+		String filo = request.getParameter("filo");
+		String classe = request.getParameter("classe");
+		String ordem = request.getParameter("ordem");
+		//boolean online = false;
 		String mensagem;
 
-		// Necessário para enviar o retorno da mensagem ao cliente
-		RequestDispatcher dispacher = request.getRequestDispatcher("cadastrarProduto.jsp");
+		// Necessï¿½rio para enviar o retorno da mensagem ao cliente
+		RequestDispatcher dispacher = request.getRequestDispatcher("cadastrarProtozoario.jsp");
 
-		// Validação dos campos
-		if (descricao != null && !descricao.isEmpty() && request.getParameter("quantidade") != null
-				&& !request.getParameter("quantidade").isEmpty() && request.getParameter("preco") != null
-				&& !request.getParameter("preco").isEmpty()) {
+		// Validaï¿½ï¿½o dos campos
+		if (nome != null && !nome.isEmpty() && filo != null
+				&& !filo.isEmpty() && classe != null
+				&& !classe.isEmpty()&& ordem != null
+				&& !ordem.isEmpty()) {
 
-			int quantidade;
-			double preco;
+			//int quantidade;
+			//double preco;
 
-			quantidade = Integer.parseInt(request.getParameter("quantidade"));
-			preco = Double.parseDouble(request.getParameter("preco"));
+			//quantidade = Integer.parseInt(request.getParameter("quantidade"));
+			//preco = Double.parseDouble(request.getParameter("preco"));
 
-			// Verifica se o campo não foi marcado pelo usuario para evitar erro
-			if (request.getParameter("online") != null && request.getParameter("online").equals("on")) {
-				online = true;
-			}
+			// Verifica se o campo nï¿½o foi marcado pelo usuario para evitar erro
+			//if (request.getParameter("online") != null && request.getParameter("online").equals("on")) {
+			//	online = true;
+			//}
 
 			// Envia os valores para montagem do objeto usando o construtor
-			Produto produto = new Produto(descricao, quantidade, preco, online);
-			produto.salvar();
+			Protozoario protozoario = new Protozoario(nome, filo, classe, ordem);
+			protozoario.salvar();
 
-			mensagem = "Produto cadastrado com sucesso!";
+			mensagem = "Protozoario cadastrado com sucesso!";
 
 		} else {
 
@@ -80,7 +85,7 @@ public class cadastrarProdutoController extends HttpServlet {
 
 		}
 
-		// Fora do if para garantir que sempre será enviado
+		// Fora do if para garantir que sempre serï¿½ enviado
 		request.setAttribute("mensagem", mensagem);
 		dispacher.forward(request, response);
 

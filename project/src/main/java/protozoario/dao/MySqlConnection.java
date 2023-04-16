@@ -1,4 +1,4 @@
-package banana.dao;
+package protozoario.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ public class MySqlConnection {
 		}
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/banana", "root", "");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/protobd", "root", "1234");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

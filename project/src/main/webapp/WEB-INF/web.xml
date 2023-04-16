@@ -4,34 +4,41 @@
     <description></description>
     <display-name>cadastrar</display-name>
     <servlet-name>cadastrar</servlet-name>
-    <servlet-class>banana.controller.cadastrarProdutoController</servlet-class>
+    <servlet-class>protozoario.controller.cadastrarProtozoarioController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>cadastrar</servlet-name>
-    <url-pattern>/cadastrarProduto</url-pattern>
+    <url-pattern>/cadastrarProtozoario</url-pattern>
   </servlet-mapping>
-  <display-name>BananaBacana</display-name>
-  
+  <display-name>Protozoario</display-name>
   <servlet>
     <description></description>
     <display-name>buscar</display-name>
     <servlet-name>buscar</servlet-name>
-    <servlet-class>banana.controller.buscarProdutoController</servlet-class>
+    <servlet-class>protozoario.controller.buscarProtozoarioController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>buscar</servlet-name>
-    <url-pattern>/buscarProdutos</url-pattern>
+    <url-pattern>/buscarProtozoario</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>modificar</display-name>
     <servlet-name>modificar</servlet-name>
-    <servlet-class>banana.controller.modificarProdutoController</servlet-class>
+    <servlet-class>protozoario.controller.modificarProtozoarioController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>modificar</servlet-name>
-    <url-pattern>/modificarProduto</url-pattern>
+    <url-pattern>/modificarProtozoario</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>alterarProtozoarioController</display-name>
+    <servlet-name>alterarProtozoarioController</servlet-name>
+    <servlet-class>protozoario.controller.alterarProtozoarioController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>alterarProtozoarioController</servlet-name>
+    <url-pattern>/alterarProtozoarioController</url-pattern>
+  </servlet-mapping>
 </web-app>

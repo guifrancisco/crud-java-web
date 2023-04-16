@@ -1,4 +1,4 @@
-package banana.controller;
+package protozoario.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -6,17 +6,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import protozoario.model.Protozoario;
 
-import banana.model.Produto;
+import java.io.IOException;
 
 /**
  * Servlet implementation class modificarProdutoController
  */
-public class modificarProdutoController extends HttpServlet {
+public class modificarProtozoarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public modificarProdutoController() {
+	public modificarProtozoarioController() {
 		super();
 	}
 
@@ -36,15 +36,15 @@ public class modificarProdutoController extends HttpServlet {
 
 		if (apagar != null && id != null) {
 
-			new Produto().excluir(Integer.valueOf(id));
-			RequestDispatcher dispacher = request.getRequestDispatcher("consultarProduto.jsp");
-			request.setAttribute("mensagem", "Produto apagado com sucesso!");
+			new Protozoario().excluir(Integer.valueOf(id));
+			RequestDispatcher dispacher = request.getRequestDispatcher("consultarProtozoario.jsp");
+			request.setAttribute("mensagem", "Protozoario apagado com sucesso!");
 			dispacher.forward(request, response);
 
 		} else if (alterar != null && id != null){
-			Produto produto = new Produto().buscarProdutoPorId(Integer.valueOf(id));
-			RequestDispatcher dispacher = request.getRequestDispatcher("alterarProduto.jsp");
-			request.setAttribute("produto", produto);
+			Protozoario protozoario = new Protozoario().buscarProtozoarioPorId(Integer.valueOf(id));
+			RequestDispatcher dispacher = request.getRequestDispatcher("alterarProtozoario.jsp");
+			request.setAttribute("protozoario", protozoario);
 			dispacher.forward(request, response);
 		}
 	}
